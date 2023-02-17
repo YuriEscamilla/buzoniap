@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--TREE -->
+    <record id="buzon_iap_tramites" model="ir.ui.view">
+        <field name="name">solicitudesbase.tree.view</field><!--es la etiequeta del nombre de la vista -->
+        <field name="model">tramite.gestion</field><!--esta etiqueta se refiere a nuestro modelo -->
+        <field name="arch" type="xml">
+            <!-- aqui vamos a definir el tipo de vista-->
+            <tree string="EstatusTram"  create="false">
+                <field name="RefIdUsuario"/>
+                <field name="RefIdTipoTram"/>
+                <field name="EstatusAsunto" string="Estatus" widget="badge"
+                       decoration-primary="EstatusAsunto == 'notificado'"
+                       decoration-info="EstatusAsunto== 'activo'"
+                       decoration-success="EstatusAsunto== 'autorizado'"
+                       decoration-danger="EstatusAsunto == 'rechazado' "  />
+                <field name="RefidSolicitud"/>
+                <field name="fecha_recibe_noti" string="Fecha que recibió la notificación"/>
+                <field name="origeningreso" string="Forma de ingreso"/>
+                <button name="abrir_folio" type="object" string="Ver documentación"  class="btn btn-sm  bg-primary"/>
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--CATEGORIA DE SEGURIDAD  -->
+    <record id="module_gestion_jap_category" model="ir.module.category">
+        <field name="name">BUZON</field>
+    </record>
+
+
+
+    <record id="solicitudes_iap_usuario_group_user" model="res.groups">
+        <field name="name">Buzon de IAP </field>
+        <field name="category_id" ref="module_gestion_jap_category"/>
+        <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+
+    <record id="tramite_company_rule" model="ir.rule">
+        <field name="model_id" ref="gestiontramites.model_tramite_gestion"/>
+        <field name="name">Buzon por Institucion</field>
+        <field name="perm_create" eval="True"/>
+        <field name="groups" eval="[(4, ref('buzoniap.solicitudes_iap_usuario_group_user'))]"/>
+        <field name="domain_force">[('EstatusAsunto','!=','activo'),'|',('RefIdIAP','=',False),('RefIdIAP','child_of',[user.company_id.partner_id.id])]</field>
+
+    </record>
+
+
+
+
+
+</odoo>
